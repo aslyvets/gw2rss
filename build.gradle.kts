@@ -1,11 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    id("org.springframework.boot") version "2.1.6.RELEASE"
-    id("io.spring.dependency-management") version "1.0.7.RELEASE"
-
-    kotlin("jvm") version "1.3.61"
-    kotlin("plugin.spring") version "1.3.61"
+    kotlin("jvm") version "1.3.71"
 }
 
 group = "com.jedicoder"
@@ -18,15 +14,11 @@ repositories {
 
 dependencies {
     implementation(group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8")
-    implementation(group = "org.springframework.boot", name = "spring-boot-starter-web")
-    implementation(group = "org.springframework.boot", name = "spring-boot-starter-mustache")
     implementation(group = "com.squareup.okhttp", name = "okhttp", version = "2.7.5")
     implementation(group = "com.google.code.gson", name = "gson", version = "2.8.5")
-
-    testImplementation(group = "org.assertj", name = "assertj-core", version = "3.14.0")
-    testImplementation(group = "org.springframework.boot", name = "spring-boot-starter-test")
-    testImplementation(group = "org.junit.jupiter", name = "junit-jupiter-api")
-    testRuntime(group = "org.junit.jupiter", name = "junit-jupiter-engine")
+    implementation(group = "io.ktor", name = "ktor-server-core", version = "1.3.1")
+    implementation(group = "io.ktor", name = "ktor-server-netty", version = "1.3.1")
+    implementation(group = "io.ktor", name = "ktor-mustache", version = "1.3.1")
 }
 
 tasks.register<Task>("stage") {
@@ -35,13 +27,8 @@ tasks.register<Task>("stage") {
     dependsOn("build")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
-
 tasks.withType<KotlinCompile> {
     kotlinOptions {
-        freeCompilerArgs = listOf("-Xjsr305=strict")
         jvmTarget = "1.8"
     }
 }
