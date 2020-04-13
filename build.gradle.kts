@@ -1,7 +1,9 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
+    application
     kotlin("jvm") version "1.3.71"
+    id("com.github.johnrengelman.shadow") version "5.2.0"
 }
 
 group = "com.jedicoder"
@@ -12,6 +14,10 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClassName = "io.ktor.server.netty.EngineMain"
+}
+
 dependencies {
     implementation(group = "org.jetbrains.kotlin", name = "kotlin-stdlib-jdk8")
     implementation(group = "com.squareup.okhttp", name = "okhttp", version = "2.7.5")
@@ -19,6 +25,16 @@ dependencies {
     implementation(group = "io.ktor", name = "ktor-server-core", version = "1.3.1")
     implementation(group = "io.ktor", name = "ktor-server-netty", version = "1.3.1")
     implementation(group = "io.ktor", name = "ktor-mustache", version = "1.3.1")
+}
+
+tasks.withType<Jar> {
+    manifest {
+        attributes(
+            mapOf(
+                "Main-Class" to application.mainClassName
+            )
+        )
+    }
 }
 
 tasks.register<Task>("stage") {

@@ -5,6 +5,7 @@ import com.jedicoder.Consts.ANSWER
 import com.jedicoder.Consts.GIF
 import com.jedicoder.Consts.INDEX
 import com.jedicoder.GifService.getGif
+import io.ktor.application.Application
 import io.ktor.application.ApplicationCall
 import io.ktor.application.call
 import io.ktor.application.install
@@ -18,8 +19,8 @@ import io.ktor.server.netty.Netty
 import io.ktor.util.pipeline.PipelineContext
 import kotlin.random.Random
 
-fun main() {
-    val port = System.getenv("server.port")?.toIntOrNull() ?: 8080
+fun Application.main() {
+    val port = System.getenv("PORT")?.toInt() ?: 8080
     val server = embeddedServer(Netty, port = port) {
         install(Mustache) {
             mustacheFactory = DefaultMustacheFactory("templates")
