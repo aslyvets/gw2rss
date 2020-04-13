@@ -49,7 +49,7 @@ class StaticController {
         val isMarcus = marcus.contains(user.name.toLowerCase())
         when {
             isTina -> return getHB()
-            isAlex -> return getModelAndViewFor("whiskey", "С именнинецей тебя!")
+            isAlex -> return getModelAndViewFor("party", "Пора встретиться с Лёхой!")
             isMarcus -> return getModelAndViewFor("gaming", "Play GW2!")
         }
         return ModelAndView(NAME)
@@ -63,17 +63,17 @@ class StaticController {
 
     private fun getHB(): ModelAndView {
         counter++
-        val headerText = "Happy birthday ${user?.name}"
+        val headerText = "Not a Birthday today :-`( ${user?.name}"
         return ModelAndView(
             HB,
-            mapOf(GIF to getGif("happy birthday"), ANSWER to headerText, BUTTON_TEXT to "Get drink!")
+            mapOf(GIF to getGif("work"), ANSWER to headerText, BUTTON_TEXT to "But you still can have a drink!")
         )
     }
 
     private fun getDrink(headerText: String, buttonText: String): ModelAndView {
         counter++
         if (counter.rem(4) == 0) {
-            return getModelAndViewFor("hide", "Время прятатся под стол!")
+            return getModelAndViewFor("gran canaria", "Що краще буряк чи кактус?")
         }
         return ModelAndView(HB, mapOf(GIF to getGif("drink"), ANSWER to headerText, BUTTON_TEXT to buttonText))
     }
