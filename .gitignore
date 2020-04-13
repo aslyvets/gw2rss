@@ -1,0 +1,44 @@
+### gradle ### 
+.gradle
+build/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+out/
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+
+### VS Code ###
+.vscode/
+
+### Terraform
+/.terraform/
+.terraform.tfstate.lock.info
+terraform.tfstate*
+
+### Static frontend build files
+backend/src/main/resources/static/**
+
+# Ignore Gradle build output directory
+build
+backend/storage
+
+### Mac OS X ###
+.DS_Store
